@@ -1,6 +1,8 @@
 #include "renameAttribute.h"
 
-bool renameAttribute::process(Feature& feature) {
+RenameAttribute::RenameAttribute(const std::string& from, const std::string& to) : from_(std::move(from)), to_(std::move(to)) {}
+
+bool RenameAttribute::process(Feature& feature) {
     auto val = feature.getAttribute(from_);
     if (!val) {
         // attribute missing, do nothing or log

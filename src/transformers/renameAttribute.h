@@ -1,9 +1,9 @@
 #include "../engine/transformer.h"
 #include <string>
 
-class renameAttribute : public Transformer {
+class RenameAttribute : public Transformer {
 public:
-    renameAttribute(std::string from, std::string to) : from_(std::move(from)), to_(std::move(to)) {}
+    RenameAttribute(const std::string& from, const std::string& to);
     bool process(Feature& feature) override;
 private:
     std::string from_;

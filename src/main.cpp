@@ -1,21 +1,26 @@
 #include <iostream>
 #include "engine/feature.h"
+#include "engine/pipeline.h"
+#include "transformers/renameAttribute.h"
+#include "readers/csvReader.h"
+#include "writers/csvWriter.h"
 
 int main() {
+    CsvReader reader("data/input.csv");
+    CsvWriter writer("data/output.csv");
+
+    Pipeline pipeline;
+    pipeline.addTransformer(std::make_unique<RenameAttribute>("name", "new_name"));
+
     Feature feature;
+    while (reader.next(feature)) {
+        // Run transformer on each feature
+        if (pipeline.run(feature)) {
+            writer.write(feature);
+        }
+    }
 
-    feature.setAttribute("height", 12.5);
-    feature.setAttribute("name", std::string("Building A"));
-    feature.setAttribute("floors", 3);
+    std::cout << "Transformation Complete" << std::endl;
 
-    auto heightOpt = feature.getAttribute("name");
-    if (!heightOpt) return 0; // exit if no height
-
-    auto& height = *heightOpt;
-    std::visit([](auto&& value) {
-        std::cout << "name: " << value << std::endl;
-    }, height);
-
-    // std::cout << "Attribute count: " << feature.attributeCount() << "\n";
     return 0;
 }

@@ -28,3 +28,7 @@ void Feature::removeAttribute(const std::string& key) {
 std::size_t Feature::attributeCount() const {
     return attributes_.size();
 }
+
+const std::unordered_map<std::string, attributeValue>& Feature::getAttributes() const {
+    return attributes_;
+}

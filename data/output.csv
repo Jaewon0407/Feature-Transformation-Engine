@@ -1,0 +1,9 @@
+zone,floors,height,new_name,id
+residential,3,12.5,Building A,1
+commercial,2,8.0,Building B,2
+residential,7,25.2,Building C,3
+industrial,1,5.5,Warehouse D,4
+commercial,5,18.0,Office E,5
+residential,10,30.0,Apartment F,6
+commercial,1,9.5,Shop G,7
+industrial,4,15.0,Factory H,8
